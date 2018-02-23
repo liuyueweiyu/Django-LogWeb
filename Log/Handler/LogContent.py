@@ -71,11 +71,6 @@ def updateLog(request):        #更新文章
     categary = request.POST.get("category")
     content = request.POST.get("content")
     author = request.POST.get("author")
-    # id = "3"
-    # title = "sagfasdbkfa"
-    # categary = 1
-    # author = 1
-    # content = "sdfadfas"
     try:
         log = Log.objects.get(id = id)
         log.title = title

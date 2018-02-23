@@ -19,6 +19,7 @@ from django.contrib import admin
 from django.conf import settings
 from Log.Handler import LogContent
 from Log.uploads import upload_image
+from Users import User_Handler
 # from Log import views
 
 urlpatterns = [
@@ -32,5 +33,8 @@ urlpatterns = [
     url(r'^publishLogView$',LogContent.publishLogView),
     url(r'^puhlishLog/',LogContent.publishLog),
     url(r'^deleteLog',LogContent.deleteLog),
-    url(r'^updateLog',LogContent.updateLog)
+    url(r'^updateLog',LogContent.updateLog),
+    url(r'^logview',User_Handler.loginview),
+    url(r'^login',User_Handler.login),
+    url(r'^register',User_Handler.register),
 ]
