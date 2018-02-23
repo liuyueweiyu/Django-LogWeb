@@ -1,6 +1,6 @@
 #### KindEditor在Django中配置
 
-	##### 	Django-1.11.10
+##### 	Django-1.11.10
 
 #####	KindEditor-4.1.11
 
