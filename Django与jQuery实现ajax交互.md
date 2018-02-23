@@ -71,7 +71,7 @@
    即上传文件
 
    ```javascript
-      	var $formData=new FormData();	//FormData是HTML5的新对象，注意兼容性
+      	var $formData=new FormData();	//FormData是HTML5的新对象，注意兼容性，:)不想管兼容性
        $formData.append("name",$("#hhh").val());
        $formData.append("img_file",$("#file-up")[0].files[0]);
 

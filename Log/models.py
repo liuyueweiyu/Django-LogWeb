@@ -18,6 +18,7 @@ class Log(models.Model):                    #文章
     like = models.IntegerField("点赞数",default=0)
     collect = models.IntegerField("收藏数",default=0)
 
+
 class LogTag(models.Model):                 #文章tag
     name = models.CharField("名称",max_length=10)
     log = models.ForeignKey(Log)

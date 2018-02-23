@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+	{% csrf_token %}
+	<p>标题:<input type="text" id="title"></p>
+	<p>分类:<input type="text" id="categary"></p>
+	<p>内容:<input type="text" id="content"></p>
+	<textarea id="editor_id" name="content" style="height: 400px" >{{ text }}</textarea>
+	<script src="/static/kindeditor-4.1.11/kindeditor-all-min.js"></script>
+    <script src="/static/kindeditor-4.1.11/lang/zh-CN.js"></script>
+    <script src="/static/kindeditor-4.1.11/themes/default/default.css"></script>
+    <script>
+    	var editor
+        KindEditor.ready(function (k) {
+            	editor = k.create('#editor_id',{
+                resizeType:1,
+                allowPreviewEmoticons : false,
+                allowImageRemote : false,
+                // {#处理url#}
+                uploadJson : '/upload/kindeditor',
+
+            });
+        })
+
+    </script>
+	<p><input type="submit" id="submit"></p>
+    <script type="text/javascript" src="../static/js/jquery-3.1.1.min.js"></script>
+	<script type="text/javascript">
+		$("#submit").click(function() {
+			// console.log(editor.html())
+			$.ajax({ 
+	        	type: "POST",
+	            url: "/puhlishLog/",
+	            dataType: "JSON",
+	            async: true,
+	            data: {
+	            	title:$("#title").val(),
+	            	categary:$("#categary").val(),
+	            	content:editor.html(),
+	            	author:1
+	            },
+	      	    headers:{"X-CSRFToken":$("[name='csrfmiddlewaretoken']").val()},
+	            success: function(data) {
+	          		//执行的代码
+	          		alert(data)
+	            }
+	    	}); 
+		})
+
+	</script>
+</body>
+</html>

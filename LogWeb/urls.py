@@ -14,14 +14,23 @@ Including another URLconf
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
 from django.conf.urls import url
+from django.views.static import serve
 from django.contrib import admin
+from django.conf import settings
 from Log.Handler import LogContent
+from Log.uploads import upload_image
+# from Log import views
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r"^uploads/(?P<path>.*)$",serve, {"document_root": settings.MEDIA_ROOT, }),
+    url(r'^upload/(?P<dir_name>[^/]+)$', upload_image, name='upload_image'),
+    #
 
-    url(r'^Log/',LogContent.getLog),
-    url(r'^LogContent$',LogContent.getLogContent)
-
-
+    url(r'^Log/',LogContent.LogView),
+    url(r'^LogContent$',LogContent.getLogContent),
+    url(r'^publishLogView$',LogContent.publishLogView),
+    url(r'^puhlishLog/',LogContent.publishLog),
+    url(r'^deleteLog',LogContent.deleteLog),
+    url(r'^updateLog',LogContent.updateLog)
 ]
