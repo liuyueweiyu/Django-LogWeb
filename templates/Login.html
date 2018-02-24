@@ -6,6 +6,35 @@
 </head>
 <body>
 <form ></form>
-    <p>注册</p>
+    <p>登陆</p>
+    {% csrf_token %}
+    <p>用户名:<input type="text" id="name"></p>
+    <p>密码:<input type="password" id="password"></p>
+    <p><input type="submit" id="submit"></p>
+    <script type="text/javascript" src="../static/js/jquery-3.1.1.min.js"></script>
+    <script type="text/javascript">
+    	//POST
+    	$("#submit").click(function(argument) {
+    		$.ajax({
+				type: "POST",
+				url: "/login/",
+		    	dataType: "JSON",
+			    async: true,
+			    data: {
+			    	"name":$("#name").val(),
+			    	"password":$("#password").val(),
+			    },
+
+			    //发送csrftoken，防止跨站请求伪造，不发送会出现403提示:
+			    //CSRF verification failed. Request aborted.
+			    headers:{"X-CSRFToken":$("[name='csrfmiddlewaretoken']").val()},
+			    success: function(data) {
+		        	//执行的代码
+			        console.log(data)
+			    }
+		    });
+    	})
+
+    </script>
 </body>
 </html>

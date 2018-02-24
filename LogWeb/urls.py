@@ -34,7 +34,9 @@ urlpatterns = [
     url(r'^puhlishLog/',LogContent.publishLog),
     url(r'^deleteLog',LogContent.deleteLog),
     url(r'^updateLog',LogContent.updateLog),
-    url(r'^logview',User_Handler.loginview),
-    url(r'^login',User_Handler.login),
+    url(r'^regitsterview',User_Handler.regitsterview),
     url(r'^register',User_Handler.register),
+    url(r'^loginview', User_Handler.loginview),
+    url(r'^login', User_Handler.login),
+
 ]

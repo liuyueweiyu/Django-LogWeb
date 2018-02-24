@@ -42,13 +42,13 @@ def publishLog(request):        #添加文章
     title = request.POST.get("title")
     categary = request.POST.get("categary")
     content = request.POST.get("content")
-    author = request.POST.get("author")
+    author = request.session["user_id"]
     try:
         log = Log.objects.create(
             title=title,
             category=LogCategory.objects.get(id=categary),
             content=content,
-            author=Users.objects.get(id=author),  # 应该存在session里的
+            author=Users.objects.get(id = author),  # 应该存在session里的
             time=datetime.datetime.now(),
         )
         log.save()
@@ -70,7 +70,7 @@ def updateLog(request):        #更新文章
     title = request.POST.get("title")
     categary = request.POST.get("category")
     content = request.POST.get("content")
-    author = request.POST.get("author")
+    author = request.session["user_id"]
     try:
         log = Log.objects.get(id = id)
         log.title = title
