@@ -81,3 +81,4 @@ def updateLog(request):        #更新文章
         return HttpResponse("更新成功！")
     except Exception as e:
         return HttpResponse("更新失败！")
+
